@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/sh
 # es: ./prompt "Reboot?" "sudo reboot now"
 
 [ "$(printf "No\\nYes" | dmenu -i -p "$1" -nb darkred -sb red -sf white -nf gray )" = "Yes" ] && $2

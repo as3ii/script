@@ -1,5 +1,6 @@
 #!/bin/sh
 
+systemctl suspend
 revert() {
     xset dpms 0 0 0
 }

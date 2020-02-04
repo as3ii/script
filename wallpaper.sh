@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 while true; do
     feh --randomize --recursive --bg-fill ~/Pictures/anime/*
