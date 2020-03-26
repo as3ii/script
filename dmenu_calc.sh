@@ -7,6 +7,7 @@ if [ "$eq" != "" ]; then
 from tokenize import tokenize, untokenize, NUMBER, STRING, NAME, OP
 from io import BytesIO
 from decimal import Decimal, getcontext
+from math import *
 getcontext().prec = 6
 
 def float_sucks(s):
