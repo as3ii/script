@@ -1,8 +1,12 @@
 #!/bin/sh
 
-eq=$(printf "" | dmenu -fn "Monospace 10" -p "write equation: ")
-printf "%s" "$eq"
-if [ "$eq" != "" ]; then
+histfile="$HOME/.cache/dmenu_calc.log"
+
+history="$(cat "$histfile" 2>/dev/null)"
+
+eq=$(printf "%s" "$history" | dmenu -fn "Monospace 10" -p "write equation: ")
+if [ "$eq" != "\n" ] && [ "$eq" != "" ]; then
+    printf "%s\n" "$eq" >> "$histfile"
     ret=$(python3 -c "
 from tokenize import tokenize, untokenize, NUMBER, STRING, NAME, OP
 from io import BytesIO
