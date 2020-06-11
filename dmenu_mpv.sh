@@ -1,6 +1,6 @@
 #!/bin/sh
 
-link="$(xclip -o -sel clip | dmenu -fn "Monospace 10" -p "Select copyed link: ")"
+link="$(echo "$(xclip -o -sel clip)\n$(find . -L -type f -maxdepth 5 -name "*" ! -path "./.*" ! -path "." -printf "%f\n")" | dmenu -fn "Monospace 10" -p "Select copyed link: ")"
 if [ -n "$link" ]; then
     mpv "$link" >/dev/null 2>&1
     case $? in
