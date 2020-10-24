@@ -4,6 +4,15 @@
 if [ -z "$BORG_REPO" ]; then
     export BORG_REPO="/mnt/archive/backup"
 fi
+if [ -z "$BORG_PASSPHRASE" ]; then
+    printf "Password: "
+    stty -echo  # disable echo input characters
+    read -r PASSWD
+    stty echo   # restore echo
+    export BORG_PASSPHRASE="$PASSWD"
+    unset PASSWD
+    printf "\n"
+fi
 
 # check target folders
 if [ -z "${BORG_REPO##/home*}" ]; then
