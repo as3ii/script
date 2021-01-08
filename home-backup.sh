@@ -33,7 +33,7 @@ if [ "$1" = "-c" ] || [ "$1" = "--check" ]; then
 fi
 
 printf "Starting home backup...\n"
-ionice -c 3 borg create -s --progress -C auto,zstd,7 -x \
+ionice -c 3 borg create -s --progress -C auto,zstd,8 -x \
     -e '/home/*/.cache/ccache' \
     -e '/home/*/.cache/mozilla/firefox/*/cache*' \
     -e '/home/*/.cache/spotify/Data' \
