@@ -50,8 +50,10 @@ ionice -c 3 borg create -s --progress -C auto,zstd,8 -x \
     -e '/home/*/.cache/wine' \
     -e '/home/*/.cache/calibre' \
     -e '/home/*/.cache/yay/*/*.pkg.tar.*' \
+    -e '/home/*/.cache/yay/*/src' \
     -e '/home/*/.cache/paru/clone/*/*.pkg.tar.*' \
     -e '/home/*/.cache/paru/clone/linux-rt/linux-rt' \
+    -e '/home/*/.cache/paru/clone/*/src' \
     -e '/home/*/.cache/supertuxkart' \
     -e '/home/*/.local/share/Steam' \
     -e '/home/*/.local/share/Trash' \
