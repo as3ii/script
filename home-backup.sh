@@ -6,7 +6,7 @@ if [ -z "$BORG_REPO" ]; then
 fi
 if [ -z "$BORG_PASSPHRASE" ]; then
     if command -v rbw >/dev/null; then
-        rbw sync
+        timeout 30s rbw sync
         PASSWD="$(rbw get "$(rbw ls | grep -i "borg")")"
         export BORG_PASSPHRASE="$PASSWD"
         unset PASSWD
@@ -49,6 +49,9 @@ ionice -c 3 borg create -s --progress -C auto,zstd,8 -x \
     -e '/home/*/.cache/keybase/*log*' \
     -e '/home/*/.cache/wine' \
     -e '/home/*/.cache/calibre' \
+    -e '/home/*/.cache/yay/*/*.pkg.tar.*' \
+    -e '/home/*/.cache/paru/clone/*/*.pkg.tar.*' \
+    -e '/home/*/.cache/paru/clone/linux-rt/linux-rt' \
     -e '/home/*/.cache/supertuxkart' \
     -e '/home/*/.local/share/Steam' \
     -e '/home/*/.local/share/Trash' \
