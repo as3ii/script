@@ -42,6 +42,8 @@ fi
 
 printf "Starting home backup...\n"
 ionice -c 3 borg create -s --progress -C auto,zstd,8 -x \
+    -e '/home/*/.config/*/*cache*' \
+    -e '/home/*/.config/*/*Cache*' \
     -e '/home/*/.cache/ccache' \
     -e '/home/*/.cache/mozilla/firefox/*/cache*' \
     -e '/home/*/.cache/spotify/Data' \
@@ -49,7 +51,10 @@ ionice -c 3 borg create -s --progress -C auto,zstd,8 -x \
     -e '/home/*/.cache/keybase/*log*' \
     -e '/home/*/.cache/wine' \
     -e '/home/*/.cache/calibre' \
+    -e '/home/*/.cache/go' \
+    -e '/home/*/.cache/go-build' \
     -e '/home/*/.cache/yay/*/*.pkg.tar.*' \
+    -e '/home/*/.cache/yay/linux-rt/linux-rt' \
     -e '/home/*/.cache/yay/*/src' \
     -e '/home/*/.cache/paru/clone/*/*.pkg.tar.*' \
     -e '/home/*/.cache/paru/clone/linux-rt/linux-rt' \
@@ -61,6 +66,7 @@ ionice -c 3 borg create -s --progress -C auto,zstd,8 -x \
     -e '/home/*/.local/share/cargo' \
     -e '/home/*/.nvm' \
     -e '/home/*/.nv' \
+    -e '/home/*/.wine' \
     --exclude-caches --show-rc \
     ::'{hostname}-{now}' /home
 
