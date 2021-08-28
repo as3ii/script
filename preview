@@ -5,10 +5,13 @@ case "$1" in
     *.md) glow -s dark "$1";;
     *.pdf) pdftotext "$1" -;;
     *.zip) zipinfo "$1";;
-    *.tar.gz) tar -ztvf "$1";;
-    *.tar.bz2) tar -jtvf "$1";;
+    *.tar.gz|*.tgz) tar -ztvf "$1";;
+    *.tar.bz2|*.tbz2) tar -jtvf "$1";;
+    *.tar.txz|*.txz) xz --list "$1";;
+    *.tar.zst) tar --zstd -tvf "$1";;
     *.tar) tar -tvf "$1";;
     *.rar) unrar l "$1";;
     *.7z|*.iso) 7z l "$1";;
-    *) highlight "$1" -O ansi -t 4 --force;;
+    *) highlight "$1" -O ansi -t 4 --force || cat "$1";;
 esac
+
